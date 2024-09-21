@@ -1,22 +1,23 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
-import { SvgXml } from "react-native-svg";
+import React from "react";
+import {StyleSheet, Text, TouchableOpacity} from "react-native";
+import {SvgXml} from "react-native-svg";
 import plus from '../../images/plus.svg'
-import { colors } from "../../styles/colors";
-
+import {colors} from "../../styles/colors";
+import {format} from "date-fns";
 
 
 export const DayCard = ({
-    onPress
-} : {
+                            onPress,
+                            day
+                        }: {
     onPress: () => void
+    day: Date
 }) => {
 
     return <>
         <TouchableOpacity style={s.DayCard} onPress={onPress}>
-            <View>
-                <SvgXml style={s.plus} xml={plus} />
-            </View>
+            <Text style={s.weekDay}>{format(day, 'EEE')}</Text>
+            <SvgXml style={s.plus} xml={plus}/>
         </TouchableOpacity>
     </>
 }
@@ -30,9 +31,18 @@ const s = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: colors.darkGrey,
     },
     plus: {
         flexBasis: '90%'
+    },
+    weekDay: {
+        color: colors.white,
+        position: "absolute",
+        top: 5,
+        left: 10,
+        fontSize: 16,
+        fontWeight: '300'
     }
 })

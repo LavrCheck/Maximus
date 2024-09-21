@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { DayCard } from '../components/DayCard';
-import { AddModal } from '../components/AddModal.tsx';
-import { colors } from '../../styles/colors.tsx';
-import { getWeek } from 'date-fns';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {DayCard} from '../components/DayCard';
+import {AddModal} from '../components/AddModal.tsx';
+import {colors} from '../../styles/colors.tsx';
+import {addDays, format, startOfWeek} from 'date-fns';
 
-const getCurrentWeek = () => (getWeek(new Date()))
+const weekDays = Array.from({length: 7}, (_, i) => addDays(startOfWeek(new Date(), {weekStartsOn: 1}), i))
+
 
 export const Root = () => {
 
-    const [isAddModalShow, setIsAddModalShow] = useState<boolean>(true)
+    const [isAddModalShow, setIsAddModalShow] = useState<boolean>(false)
+    const [selectedDay, setSelectedDay] = useState<Date>(new Date())
 
     return <>
         <SafeAreaView style={s.Root}>
@@ -23,18 +24,22 @@ export const Root = () => {
                     fontSize: 20,
                     fontWeight: '600'
                 }}
-            >Week {getCurrentWeek()}</Text>
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
-            <DayCard onPress={() => setIsAddModalShow(true)} />
+            >{`${format(weekDays[0], 'dd')} - ${format(weekDays[6], 'dd MMM')}`}</Text>
+            {weekDays.map((day, i) => (
+                <DayCard
+                    key={i}
+                    day={day}
+                    onPress={() => {
+                        setSelectedDay(day);
+                        setIsAddModalShow(true)
+                    }}
+                />
+            ))}
         </SafeAreaView>
         <AddModal
             isModalShow={isAddModalShow}
             onClose={() => setIsAddModalShow(false)}
+            selectedDay={selectedDay}
         />
     </>
 
@@ -43,7 +48,7 @@ export const Root = () => {
 
 const s = StyleSheet.create({
     Root: {
-        backgroundColor: colors.backgroundGrey,
+        backgroundColor: colors.black,
         flex: 1,
         padding: 10,
         flexDirection: 'column',

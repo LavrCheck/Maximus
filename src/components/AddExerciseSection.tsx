@@ -15,8 +15,7 @@ export const AddExerciseSection = ({
 
     const onAddExercise = () => {
         if (inputRef.current && inputExercise === '') { inputRef.current.focus(); return }
-        addExerciseToDB(activeGroup, inputExercise)
-        console.log(getExercisesFromDB(activeGroup))
+        addExerciseToDB(activeGroup, inputExercise.charAt(0).toUpperCase() + inputExercise.slice(1))
         Keyboard.dismiss()
         setInputExercise('')
     }
@@ -28,21 +27,22 @@ export const AddExerciseSection = ({
                 onChangeText={(e) => setInputExercise(e)}
                 placeholder="Enter the name of the exercise to add..."
                 style={s.input}
-                placeholderTextColor={'#7a7a7a'}
+                placeholderTextColor={colors.lightGrey}
                 ref={inputRef}
                 onSubmitEditing={onAddExercise}
+                cursorColor={colors.white}
             />
             <View style={s.buttonsContainer}>
                 <Button
                     mode="outlined"
-                    style={{ minWidth: 170, minHeight: 40, borderColor: '#7a7a7a' }}
-                    labelStyle={{ fontSize: 17, color: '#7a7a7a' }}
+                    style={{ minWidth: 170, minHeight: 40, borderColor: colors.lightGrey }}
+                    labelStyle={{ fontSize: 17, color: colors.lightGrey }}
                     onPress={() => { }}
-                    rippleColor="rgba(122, 122, 122, 0.15)"
+                    rippleColor="rgba(122, 122, 122, 0.43)"
                 >Delete exercise</Button>
                 <Button
                     mode="contained"
-                    style={{ minWidth: 150, minHeight: 40, backgroundColor: colors.green }}
+                    style={{ minWidth: 150, minHeight: 40, backgroundColor: colors.primary }}
                     labelStyle={{ fontSize: 17 }}
                     onPress={onAddExercise}
                 >Add exercise</Button>
@@ -54,14 +54,14 @@ export const AddExerciseSection = ({
 const s = StyleSheet.create({
     AddExerciseSection: {
         height: 130,
-        backgroundColor: colors.backgroundBlack,
+        backgroundColor: colors.darkGrey,
         borderRadius: 15,
         marginBottom: 10,
         padding: 10,
         justifyContent: 'space-between'
     },
     input: {
-        backgroundColor: '#2a2a2a',
+        backgroundColor: colors.grey,
         borderRadius: 15,
         color: colors.white,
         paddingHorizontal: 10,

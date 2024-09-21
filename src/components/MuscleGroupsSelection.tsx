@@ -52,7 +52,7 @@ const s = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.backgroundBlack,
+        backgroundColor: colors.grey,
         padding: 2
     },
     active: {

@@ -22,7 +22,6 @@ const realm = new Realm({ schema: [MuscleGroupSchema] })
 export const initDB = () => {
 
     realm.write(() => {
-        realm.deleteAll()
         if (realm.isEmpty) {
             realm.create('MuscleGroup', {
                 id: 1,
