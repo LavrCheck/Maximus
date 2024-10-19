@@ -1,9 +1,9 @@
-import {colors} from "../../styles/colors.tsx";
+import {colors} from "../../../styles/colors.tsx";
 import Animated, {useAnimatedStyle, useSharedValue, withTiming} from "react-native-reanimated";
 import React, {useEffect} from "react";
 import {Dimensions, StyleSheet, Text} from "react-native";
 
-export const ChooseMuscleGroup = (
+export const ChooseMuscleGroupTextAnimated = (
     {
         refresh
     }: {
@@ -20,7 +20,9 @@ export const ChooseMuscleGroup = (
 
     useEffect(() => {
         if (refresh) {
-            translateX.value = withTiming(Dimensions.get('window').width, {duration: 250})
+            translateX.value = withTiming(-Dimensions.get('window').width, {duration: 300})
+        } else {
+            translateX.value = 0
         }
     }, [refresh])
 
