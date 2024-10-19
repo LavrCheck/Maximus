@@ -26,9 +26,9 @@ export const ExerciseNameSection = forwardRef<TextInput, AddExerciseSectionProps
                 return
             }
             addExerciseNameToDB(activeGroup, inputExercise.charAt(0).toUpperCase() + inputExercise.slice(1))
-            setInputExercise('')
             reload()
             Keyboard.dismiss()
+            setInputExercise('')
         }
 
         return <>

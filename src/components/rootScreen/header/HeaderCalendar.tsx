@@ -1,8 +1,10 @@
 import {Dimensions, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
 import {Calendar} from "react-native-calendars";
 import {colors} from "../../../../styles/colors.tsx";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {getAllDaysWithExercises} from "../../../../realm.tsx";
+// @ts-ignore
+import {useFocusEffect} from '@react-navigation/native';
 
 
 const today = () => {
@@ -26,9 +28,11 @@ export const HeaderCalendar = (
 
     const [daysWithExercises, setDaysWithExercises] = useState<any[]>([])
 
-    useEffect(() => {
-        setDaysWithExercises(getAllDaysWithExercises())
-    }, [])
+    useFocusEffect(
+        useCallback(() => {
+            setDaysWithExercises(getAllDaysWithExercises());
+        }, [])
+    );
 
     const markedDates = daysWithExercises.reduce((acc, date) => {
         acc[date] = {
