@@ -91,7 +91,7 @@ const s = StyleSheet.create({
         borderBottomStartRadius: 20
     },
     menuContent: {
-        marginTop: 15,
+        marginTop: 10,
         marginLeft: 3,
         marginRight: -3,
         backgroundColor: colors.darkGrey,
