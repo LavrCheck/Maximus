@@ -27,7 +27,6 @@ export const ExerciseNameSection = forwardRef<TextInput, AddExerciseSectionProps
             }
             addExerciseNameToDB(activeGroup, inputExercise.charAt(0).toUpperCase() + inputExercise.slice(1))
             reload()
-            Keyboard.dismiss()
             setInputExercise('')
         }
 
@@ -65,6 +64,7 @@ export const ExerciseNameSection = forwardRef<TextInput, AddExerciseSectionProps
                         mode="contained"
                         style={{minWidth: 150, minHeight: 40, backgroundColor: colors.primary}}
                         labelStyle={{fontSize: 17}}
+                        textColor={colors.white}
                         onPress={onAddExercise}
                     >
                         Add name

@@ -68,6 +68,8 @@ export const ExerciseCard = (
                 renderRightActions={renderRightActions}
                 containerStyle={[s.swipeableContainer]}
                 enabled={Boolean(valueDropDown)}
+                childrenContainerStyle={{backgroundColor: colors.darkGrey, borderRadius: 20}}
+
             >
                 <Animated.View style={s.ExerciseCard}>
 
