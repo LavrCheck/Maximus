@@ -6,4 +6,6 @@
 Данные храняться и обрабатываются в БД Realm, анимации реалезованы при помощи react-native-reanimated, навигация через react-navigation, в UI используется react-native-paper.
 Модальные окна: react-native-modal.
 
+Демонстрационная гифка может грузится долго в связи с ее весом
+
 TypeScript, React Native CLI
